@@ -8,4 +8,4 @@ npm install
 npm run dev
 ```
 
-Then open `http://<ip-host>:3000` in a browser
+Then open `http://<host-ip>:3000` in a browser
