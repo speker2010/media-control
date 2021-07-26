@@ -1,5 +1,5 @@
 export default {
-    css: ['~/assets/global.css'],
+    css: ['~/assets/global.scss'],
     server: {
         host: '0.0.0.0'
     },
@@ -11,5 +11,8 @@ export default {
             { charset: 'utf-8' },
             { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         ]
-    }
+    },
+    buildModules: [
+        '@nuxtjs/color-mode'
+    ]
 }

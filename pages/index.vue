@@ -1,5 +1,10 @@
 <template>
 <div class="player">
+    <div class="dark-switch">
+        <button @click="() => {$colorMode.preference = $colorMode.preference === 'light'? 'dark': 'light'}" class="btn btn__secondary">
+            {{$colorMode.preference === 'light' ? 'To dark': 'To light'}}
+        </button>
+    </div>
     <div class="control-panel">
         <button class="btn btn__secondary" @click="play">Play/Pause</button>
         <button class="btn btn__secondary" @click="mute">Mute/Unmute</button>
@@ -46,8 +51,16 @@ export default {
 
 $shadow: .3rem .3rem .6rem var(--greyLight-2), 
 -.2rem -.2rem .5rem var(--white);
+$dark-shadow: -4.8px -4.8px 10px #494949, 3.2px 3.2px 10px #050606;
 $inner-shadow: inset .2rem .2rem .5rem var(--greyLight-2), 
 inset -.2rem -.2rem .5rem var(--white);
+$dark-inner-shadow: inset 3.2px 3.2px 8px #050606, inset -3.2px -3.2px 8px #494949;
+
+.dark-switch {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
 
 .player {
     display: flex;
@@ -59,18 +72,22 @@ inset -.2rem -.2rem .5rem var(--white);
 .control-panel {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
+    grid-gap: 40px;
     border-radius: 12px;
-    box-shadow:.8rem .8rem 1.4rem var(--greyLight-2), 
-                -.2rem -.2rem 1.8rem var(--white);
+    box-shadow: $shadow;
     padding: 4rem;
+
+    @media (max-width: 768px) {
+        padding: 20px;
+        
+    }
 }
 
 .btn {
     color: #000;
     border: 0;
-    height: 4rem;
-    border-radius: 1rem;
+    padding: 15px 30px;
+    border-radius: 8px;
     box-shadow: $shadow;
     cursor: pointer;
     transition: .3s ease;
@@ -100,4 +117,21 @@ inset -.2rem -.2rem .5rem var(--white);
         font-size: 1.6rem;
     }
 }
+
+.dark-mode {
+    .control-panel {
+        box-shadow: $dark-shadow;
+    }
+    .btn {
+        color: #A7A8AA;
+        box-shadow: $dark-shadow;
+    }
+    .btn__secondary {
+        &:active {
+            box-shadow: $dark-inner-shadow;
+        }
+    }
+}
+
+
 </style>
